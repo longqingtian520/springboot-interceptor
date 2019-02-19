@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>登陆测试系统成功</h1>
+	 <form th:action="@{/success}" method="post">
+        <div>
+        	 <input id="hello" name="hello" type="text" placeholder="打招呼" aria-describedby="basic-addon1" />
+        </div>
+        <br />
+        <button type="submit" style="width:190px;">发送</button>
+    </form>
+</body>
+</html>
