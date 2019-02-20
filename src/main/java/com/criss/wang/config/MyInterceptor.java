@@ -15,6 +15,9 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 
 	/**
 	 * This implementation always returns {@code true}.
+	 *
+	 * 注意：preHandle是请求执行前执行的，postHandler是请求结束执行的，但只有preHandle方法返回true的时候才会执行，
+	 * 	    afterCompletion是视图渲染完成后才执行，同样需要preHandle返回true，该方法通常用于清理资源等工作
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -28,7 +31,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 		}
 		System.out.println("========false==========");
 		return false;
-		
+
 	}
 
 	/**
