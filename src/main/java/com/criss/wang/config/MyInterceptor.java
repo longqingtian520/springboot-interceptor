@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.lang.Nullable;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.criss.wang.annotation.User;
 
 public class MyInterceptor extends HandlerInterceptorAdapter{
 
@@ -22,7 +25,15 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		System.out.println("-------" + handler.toString());
+		User annonation = null;
+		if(handler instanceof HandlerMethod) {
+			annonation = ((HandlerMethod) handler).getMethodAnnotation(User.class);
+		}
+		if(annonation != null) {
+			System.out.println("wangqiubao|"+ annonation.toString());
+			return false;
+		}
 		HttpSession session = request.getSession();
 		if(session != null) {
 			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date()));
